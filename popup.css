@@ -393,11 +393,6 @@ input[type="color"]::-webkit-color-swatch-wrapper {
 input[type="color"]::-webkit-color-swatch {
 	border: none;
 }
-#result{
-    color: red;
-    font-size: 16px;
-    margin: -16px;
-}
 .hidden{
     display:none;
 }

@@ -1,6 +1,6 @@
 const colorValue = document.querySelector('.colorValue');
 const colorGrid=document.querySelector('.colorGrid');
-const resultElement = document.getElementById('result');
+// const resultElement = document.getElementById('result');
 const hexColor = document.getElementById('color');
 const select= document.getElementById('col');
 const saveBtn=document.querySelector('.save');
@@ -105,10 +105,28 @@ colorValue.addEventListener('click', () => {
       const abortController = new AbortController();
     
       eyeDropper.open({ signal: abortController.signal }).then(result => {
-        colorValue.textContent = result.sRGBHex;
-        colorGrid.style.backgroundColor = result.sRGBHex;
-      }).catch(e => {
-        resultElement.textContent = e;
+        var temp = result.sRGBHex;
+        if(temp[0]==='#')
+        {colorValue.textContent = temp;
+        colorGrid.style.backgroundColor = temp;}
+        else{
+          temp = temp.toLowerCase();
+          if(temp[0]==='r' && temp[1]==='g' && temp[2]==='b')
+          {
+             var b1 = temp.indexOf('(');
+             var b2 = temp.indexOf(')');
+             temp = temp.substring(b1,b2+1);
+             var rgbVal = temp.split(",");
+             var HexVal = rgbToHex(parseInt(rgbVal[0]),parseInt(rgbVal[1]),parseInt(rgbVal[2]));
+             colorValue.textContent = HexVal;
+             colorGrid.style.backgroundColor = HexVal;
+          }
+          else{
+            show_toast("Error Occur, Contact Developer");
+          }
+        }
+      }).catch((e) => {
+        show_toast(e);
       });
     }
     else if(event.target.value==='ColorC')
@@ -156,7 +174,7 @@ document.querySelector('#recent50BTN').addEventListener('click',()=>{
     clearTimeout(toasttime)
     toasttime= setTimeout(()=>{
     toast.style.transform="translateY(+60px)"
-    },1500)
+    },2000)
 }
 
 
