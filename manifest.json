@@ -1,25 +1,25 @@
 {
-    "name": "Vibrant Color Dropper",
-    "description": "A Powerful Color Dropper Tool to extract Colors from a browser tab, and also save recent used colors.",
-    "version": "1.0.1.3",
-    "manifest_version": 3,
-    "background": {
-        "service_worker": "background.js"
-    },
-    "action": {
-        "default_popup": "index.html",
-        "default_icon":"/images/clogo.png"
-    },
-    "icons": {
-        "48": "/images/clogo.png",
-        "96":"/images/clogo.png"
-    },
-    "commands": {
-        "_execute_action": {
-          "suggested_key": {
-            "default": "Ctrl+Shift+9",
-            "mac": "Command+Shift+9"
-          }
+  "name": "Vibrant Color Dropper & Picker",
+  "description": "A Powerful Color Dropper Tool to extract Colors from a browser tab, and also save recent used colors.",
+  "version": "1.0.1.4",
+  "manifest_version": 3,
+  "background": {
+      "service_worker": "background.js"
+  },
+  "action": {
+      "default_popup": "index.html",
+      "default_icon":"/images/clogo.png"
+  },
+  "icons": {
+      "48": "/images/clogo.png",
+      "96":"/images/clogo.png"
+  },
+  "commands": {
+      "_execute_action": {
+        "suggested_key": {
+          "default": "Ctrl+Shift+9",
+          "mac": "Command+Shift+9"
         }
       }
+    }
 }
