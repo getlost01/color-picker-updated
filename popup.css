@@ -67,15 +67,60 @@ body {
     width: 330px;
     height: 290px;
     padding: 9px;
-   
+    background-color: #1c242c;
     overflow-x: hidden;
     overflow-y: scroll;
+    color: #ccc;
+    font-size: 12px;
 }
 .mainCON .row .playground .row{
-    width: 310px;
+    width: 309px;
+    padding: 5px 0;
+    background-color: #000000;
+    border-top: 1px solid #777;
+}
+.mainCON .row .playground .dropdown{
+    width: 309px;
     margin-bottom: 10px;
-    border: 1px solid #777777;
-    background-color: #1d242c;
+}
+.mainCON .row .playground .dropdown input[type = "checkbox"]{
+    width: 305px;
+    height: 20px;
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+    z-index: 100;
+    opacity: 0;
+}
+.mainCON .row .playground .dropdown-box{
+    display: none;
+}
+.mainCON .row .playground .dropdown{
+    background-color: #000000;
+    border: 1px solid #777;
+    margin-top: 5px;
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.mainCON .row .playground .dropdown .title{
+    text-align: center;
+    padding: 5px 10px;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    cursor:no-drop;
+}
+.mainCON .row .playground .dropdown .title i{
+    font-size: 12px;
+    padding: 0 2px;
+}
+
+.mainCON .row .playground .dropdown input[ type= "checkbox"]:checked ~ .dropdown-box{
+    display: block;
+}
+.mainCON .row .playground .dropdown input[ type= "checkbox"]:checked ~ .title i{
+    transform: rotate(180deg);
 }
 .mainCON .row .playground .row h4{
     padding: 5px;
@@ -106,6 +151,7 @@ body {
     border: 1px solid white;
     overflow: hidden;
     margin: 0 5px ;
+    cursor: pointer;
 }
 .mainCON .row .playground .row .col1 .colorgrid{
     width: 25px;
@@ -154,6 +200,31 @@ body {
 .mainCON .row .playground #hexRESULT:hover ,.mainCON .row .playground #RGBresult:hover{
     color: #00bae8;
 }
+.mainCON .row .playground .row .colorGrader {
+    padding: 15px;
+}
+.mainCON .row .playground .row .colorGrader .colorBox{
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    letter-spacing: 1px;
+}
+.mainCON .row .playground .row .colorGrader .colorBox:hover{
+    transform: scale(1.05);
+    border: 1px solid #777;
+}
+.mainCON .row .playground .row .colorGrader .colorBox .keySpan{
+    position: absolute;
+    left: 15px;
+    letter-spacing: 0;
+    font-weight: 500;
+}
+.mainCON .row .playground .row .colorGrader .ColorHigh{
+    transform: scale(1.05);
+    border: 1px solid rgb(0, 0, 0);
+}
+
 
 .social{
     position: absolute;
@@ -432,3 +503,28 @@ input[type="color"]::-webkit-color-swatch {
     overflow: hidden;
     transition: all 0.5s ease-in-out;
   }
+
+
+
+  .rounded{
+    display: none;
+    position: absolute;
+    border: 1px solid #777;
+    z-index: 200;
+    font-size: 10px;
+    background-color: #000000;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  .rounded .nowCol{
+    margin-top: 5px;
+    height: 20px;
+    background-color: #00bae8;
+  }
+  .rounded .colGiven{
+    height: 20px;
+    background-color: #b3f0ff;
+  }
+  
+  
+ 

@@ -6,8 +6,18 @@
     integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" 
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body>
 
+<body>
+  <!-- custom Cursor  -->
+  <div>
+    <div class="cursor rounded">
+        Click to copy
+        <div class="nowCol"></div>
+        <div class="colGiven"></div>
+    </div>
+  </div>
+  
+<!-- social  -->
   <div class="social">
     <a href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&to=creator.gl01@gmail.com" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-envelope-open"></i></a>
  </div>
@@ -26,9 +36,37 @@
     <div class="row">
 
       <!-- playground section -->
-      <div class="playground hidden">
-          <div class="row">
-            <h4>Color Mixer</h4>
+      <div class="playground">
+
+        <div class="dropdown">
+          <input type="checkbox">
+          <div class="title">
+            <i class="fa-solid fa-chevron-down"></i>
+             Color Grader
+          </div>
+          
+          <div class="row dropdown-box">
+            <div class="col1">
+              Enter color :
+              <input type="text" placeholder="Hex Value" minlength="6" maxlength="7" id="HEXvalueColorGrader" value="000000">
+              <h5>or</h5>
+              <input type="color" value="#007800" id="colorValueColorGrader">
+            </div>
+            <div class="colorGrader">
+
+            </div>
+          </div>
+        </div>
+
+
+        <div class="dropdown">
+            <input type="checkbox">
+            <div class="title">
+                <i class="fa-solid fa-chevron-down"></i>
+                 Color Mixer
+            </div>
+            
+            <div class="row dropdown-box">
                   <div class="col1">
                         <p>Color1:</p>
                          <input type="color" value="#000000" id="userColor1">
@@ -51,12 +89,20 @@
                        <div class="colorgrid" id="resultColor"></div>
                        <div class="colorvalue" id="resultColorValue">#000000</div>
                </div>
+           </div>
           </div>
 
-          <div class="row">
+          <div class="dropdown">
+            <input type="checkbox">
+            <div class="title">
+              <i class="fa-solid fa-chevron-down"></i>
+              Color Converter
+            </div>
+
+            <div class="row dropdown-box">
             <h4>Hex Value / RGB Value</h4>
                 <div class="col1">
-                    <input type="text" placeholder="Hex Value" minlength="6" maxlength="6" id="HEXvalue" value="000000">
+                    <input type="text" placeholder="Hex Value" minlength="6" maxlength="7" id="HEXvalue" value="000000">
                     <h5>or</h5>
                     <input type="number" placeholder="r" min="0" max="255"  maxlength="3" id="Rvalue" value="0">
                     <input type="number" placeholder="g" min="0" max="255"  maxlength="3" id="Gvalue" value="0">
@@ -64,6 +110,8 @@
                 </div>
                 <p class="res"><span id="hexRESULT">#000000</span> <i class="fa-solid fa-arrow-right-arrow-left"></i> <span id="RGBresult">rgb(0, 0, 0)</span> </p>
           </div>
+          </div>
+
       </div>
 
 
