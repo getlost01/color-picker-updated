@@ -118,6 +118,8 @@ body {
 
 .mainCON .row .playground .dropdown input[ type= "checkbox"]:checked ~ .dropdown-box{
     display: block;
+    position: sticky;
+    top: 0;
 }
 .mainCON .row .playground .dropdown input[ type= "checkbox"]:checked ~ .title i{
     transform: rotate(180deg);
@@ -213,6 +215,9 @@ body {
 .mainCON .row .playground .row .colorGrader .colorBox:hover{
     transform: scale(1.05);
     border: 1px solid #777;
+}
+.mainCON .row .playground .row .colorGrader .colorBox:active{
+    transform: scale(1);
 }
 .mainCON .row .playground .row .colorGrader .colorBox .keySpan{
     position: absolute;
