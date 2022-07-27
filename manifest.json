@@ -1,7 +1,7 @@
 {
   "name": "Vibrant Color Dropper & Picker",
   "description": "A Powerful Color Dropper Tool to extract Colors from a browser tab, and also save recent used colors.",
-  "version": "1.0.1.5",
+  "version": "1.0.1.6",
   "manifest_version": 3,
   "background": {
       "service_worker": "background.js"

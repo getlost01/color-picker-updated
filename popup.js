@@ -8,6 +8,7 @@ const toast=document.querySelector(".toast");
 const playground=document.querySelector(".playground");
 const home=document.querySelector(".home");
 const recent50=document.querySelector(".recent50");
+const body=document.querySelector("#bodyCon");
 
 let ids=[];
 let colorArr=[];
@@ -28,12 +29,14 @@ function render(){
      let is=""+c;
      let te=document.getElementById(is)
      te.style.backgroundColor=colorArr[i];
+     te.classList.add('doHover');
     }
     if(c<51)
     {
      let is="r"+c;
      let te=document.getElementById(is)
      te.style.backgroundColor=colorArr[i];
+     te.classList.add('doHover');
      c++;
     }
     else{
@@ -103,7 +106,8 @@ colorValue.addEventListener('click', () => {
     {
       const eyeDropper = new EyeDropper();
       const abortController = new AbortController();
-    
+
+      body.style.display = 'none';
       eyeDropper.open({ signal: abortController.signal }).then(result => {
         var temp = result.sRGBHex;
         if(temp[0]==='#')
@@ -125,6 +129,7 @@ colorValue.addEventListener('click', () => {
             show_toast("Error Occur, Contact Developer");
           }
         }
+        body.style.display = "block";
       }).catch((e) => {
         show_toast(e);
       });
