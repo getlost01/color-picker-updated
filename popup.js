@@ -9,6 +9,8 @@ const playground=document.querySelector(".playground");
 const home=document.querySelector(".home");
 const recent50=document.querySelector(".recent50");
 const body=document.querySelector("#bodyCon");
+const playCheckbox = document.querySelectorAll('input[type="checkbox"]');
+const playDropdown = document.querySelectorAll('.dropdown');
 
 let ids=[];
 let colorArr=[];
@@ -19,6 +21,18 @@ if(colorfromls)
     render();
 }
 
+// UPDATE PAGE SECTION
+if(!localStorage.getItem("updatePage")){
+    document.querySelector(".updatePart").classList.remove("hidden");
+    document.getElementsByTagName("BODY")[0].style.backgroundColor = "#edeff5";
+}
+document.querySelector('#removeUpdatePart').addEventListener('click',()=>{
+  localStorage.setItem("updatePage","okDone");
+  document.getElementsByTagName("BODY")[0].style.backgroundColor = "#0f172a";
+  document.querySelector(".updatePart").classList.add("hidden");
+})
+
+// Main function Render
 function render(){
   let tempid=[];
   let c=1;
@@ -319,6 +333,23 @@ function rgbToHex(r, g, b) {
   return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
 }
 
+// playground dropdown --------->
+playCheckbox.forEach((ele,i) => {
+   ele.addEventListener('click',()=>{
+      if(ele.checked)
+      {
+        playDropdown.forEach(e =>{
+          e.classList.add('hidden');
+        })
+        playDropdown[i].classList.remove('hidden')
+      }
+      else{
+        playDropdown.forEach(e =>{
+          e.classList.remove('hidden');
+        })
+      }
+   })
+});
 
 // Color  converter --------->
 
@@ -449,9 +480,138 @@ colorGrader2.addEventListener('input',()=>{
     }
 })
 
+// Color Namer -------->
 
+var ColorNamerColor1 = document.querySelector("#ColorNamerColor1");
+var ColorNamerColor2 = document.querySelector("#ColorNamerColor2");
+var ColorNamerName = document.querySelector("#ColorNamerName");
+const conColorNamer =document.querySelector(".conColorNamer");
+var dataArr;
 
+fetch("/color.json")
+.then(res => res.json())
+.then(data => {dataArr = data;})
 
+ColorNamerColor1.addEventListener('input',()=>{
+  var temp = ColorNamerColor1.value.toLowerCase();
+  var newTemp = "";
+  for(let i=0;i<temp.length;i++)
+  {
+    if((temp[i]<='9'&&temp[i]>='0') || (temp[i]<='f'&&temp[i]>='a'))
+    newTemp+= temp[i]
+  }
+  ColorNamerColor1.value = newTemp;
+  if(newTemp.length>5)
+  {ColorNamerColor2.value = "#"+newTemp.substring(0,6); ColorNamerColor2.dispatchEvent(new Event('input'));}
+})
 
+ColorNamerColor2.addEventListener('input',()=>{
+    ColorNamerColor1.value = ColorNamerColor2.value.substring(1,7);
+    var te = dataArr[FindNearestColor(dataArr,hexToRgb(ColorNamerColor2.value))][1];
+    conColorNamer.innerHTML = ` 
+      <div class="valCon">
+      <div class="status"> ${(ColorNamerColor2.value === te.hex)?"Exact match":"Relative match"} </div>
+      <div class="basicCon"> <div class="colorBox" style="background-color:${te.hex};"></div> <input class="generatedColorName" readonly id="generatedColorName" value="${te.name}"></div>
+      <div class="basicCon"> 
+        <strong>hex:</strong> <input class="generatedhex" readonly id="generatedrgb" value="${te.hex}"> 
+        <strong>rgb:</strong> <input class="generatedrgb" readonly id="generatedrgb" value="rgb(${te.rgb.r},${te.rgb.g},${te.rgb.b})"> 
+      </div>
+    </div>
+    `;
+})
 
+ColorNamerName.addEventListener('input',()=>{
+    var check = ColorNamerName.value.toUpperCase();
+    var checkLen = check.length;
+    if(checkLen<3 && check!="AO"){return;}
+    var len = dataArr.length,valid;
+    var exactArr = [];
+    var nonexactArr = [];
+    var ert = '',c=0;
+
+    conColorNamer.innerHTML = "";
+    for(let i = 0;i<len;++i){
+        valid = dataArr[i][1].name.toUpperCase().indexOf(check);
+        if (valid > -1) {
+           if(valid)
+           nonexactArr.push([i,valid]);
+           else
+           exactArr.push([i,(dataArr[i][1].name.length - checkLen)]);
+        }
+    }
+    exactArr.sort((a, b) => a[1] - b[1]);
+    nonexactArr.sort((a, b) => a[1] - b[1]);
+    for(let i=0;i<exactArr.length;++i){
+      if(c<200){
+        ert += `
+        <div class="valCon">
+          <div class="basicCon"> <div class="colorBox" style="background-color:${dataArr[exactArr[i][0]][1].hex};"></div> <input class="generatedColorName" readonly id="generatedColorName" value="${dataArr[exactArr[i][0]][1].name} "></div>
+          <div class="basicCon"> 
+            <strong>hex:</strong> <input class="generatedhex" readonly id="generatedrgb" value="${dataArr[exactArr[i][0]][1].hex}"> 
+            <strong>rgb:</strong> <input class="generatedrgb" readonly id="generatedrgb" value="rgb(${dataArr[exactArr[i][0]][1].rgb.r},${dataArr[exactArr[i][0]][1].rgb.g},${dataArr[exactArr[i][0]][1].rgb.b})"> 
+          </div>
+        </div>`;
+        ++c;
+      }
+      else break;
+    }
+    for(let i=0;i<nonexactArr.length;++i){
+      if(c<200){
+        ert += `
+        <div class="valCon">
+          <div class="basicCon"> <div class="colorBox" style="background-color:${dataArr[nonexactArr[i][0]][1].hex};"></div> <input class="generatedColorName" readonly id="generatedColorName" value="${dataArr[nonexactArr[i][0]][1].name} "></div>
+          <div class="basicCon"> 
+            <strong>hex:</strong> <input class="generatedhex" readonly id="generatedrgb" value="${dataArr[nonexactArr[i][0]][1].hex}"> 
+            <strong>rgb:</strong> <input class="generatedrgb" readonly id="generatedrgb" value="rgb(${dataArr[nonexactArr[i][0]][1].rgb.r},${dataArr[nonexactArr[i][0]][1].rgb.g},${dataArr[nonexactArr[i][0]][1].rgb.b})"> 
+          </div>
+        </div>`;
+        ++c;
+      }
+      else break;
+    }
+    if(ert === ``){
+        ert = `
+        <div class="valCon">
+          <div class="basicCon"> <div class="colorBox" style="background-color: #0ca5e9;"></div> <input class="generatedColorName" readonly id="generatedColorName" value="!! Color name not found !! " style="color:  #0ca5e9;"></div>
+          <div class="basicCon"> 
+            <strong>hex:</strong> <input class="generatedhex" readonly id="generatedrgb" value="#......"> 
+            <strong>rgb:</strong> <input class="generatedrgb" readonly id="generatedrgb" value="rgb(... , ... , ...)"> 
+          </div>
+      </div>`;
+    }
+    conColorNamer.innerHTML = ert;
+})
+
+function GetDistance(current, match)
+{
+  let redDifference;
+  let greenDifference;
+  let blueDifference;
+
+  redDifference = current.r - match.r;
+  greenDifference = current.g - match.g;
+  blueDifference = current.b - match.b;
+
+  return redDifference * redDifference + greenDifference * greenDifference + blueDifference * blueDifference;
+}
+
+function FindNearestColor(map,current)
+{
+  let shortestDistance;
+  let index;
+
+  index = -1;
+  shortestDistance = Number.MAX_VALUE;
+  let len = dataArr.length;
+  for (let i = 0; i < len; i++)
+  {
+    let distance = GetDistance(current, map[i][1].rgb);
+    if (distance < shortestDistance)
+    {
+      index = i;
+      shortestDistance = distance;
+    }
+  }
+  return index;
+}
 
