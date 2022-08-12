@@ -282,7 +282,7 @@ margin: 0;
   padding: 0 10px;
 }
 .mainCON .row .playground .row .conColorNamer .valCon{
-  border: 1px solid var(--black-bg0);
+  border: 0.5px solid var(--border-color);
   background-color: var(--black-bg23);
   color: var(--font-color1);
   border-radius: 5px;
@@ -295,10 +295,11 @@ margin: 0;
   padding: 5px;
   padding-top: 0;
   font-weight: 600;
-  font-size: 13px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
   color: var(--special-color2);
   letter-spacing: 0.5px;
-  border-bottom: 1.5px solid var(--black-bg0);
+  border-bottom: 0.5px solid var(--border-color);
   margin-bottom: 3px;
   user-select: none;
 }
@@ -641,10 +642,11 @@ border: none;
 .alertForUpdate p{
   margin: 2px;
 }
-.alertForUpdate a{
+.alertForUpdate a,.alertForUpdate span{
   text-decoration: none;
   color: var(--special-color2);
   font-weight: 600;
+  cursor: pointer;
 }
 
 /* update part  */

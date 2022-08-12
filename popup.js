@@ -23,6 +23,7 @@ if(colorfromls)
 
 // UPDATE PAGE SECTION
 if(!localStorage.getItem("updatePage")){
+    localStorage.setItem("updatePage","okDone");
     document.querySelector(".updatePart").classList.remove("hidden");
     document.getElementsByTagName("BODY")[0].style.backgroundColor = "#edeff5";
 }
@@ -30,6 +31,10 @@ document.querySelector('#removeUpdatePart').addEventListener('click',()=>{
   localStorage.setItem("updatePage","okDone");
   document.getElementsByTagName("BODY")[0].style.backgroundColor = "#0f172a";
   document.querySelector(".updatePart").classList.add("hidden");
+})
+document.querySelector("#showLog").addEventListener('click',()=>{
+  document.querySelector(".updatePart").classList.remove("hidden");
+  document.getElementsByTagName("BODY")[0].style.backgroundColor = "#edeff5";
 })
 
 // Main function Render
@@ -510,7 +515,7 @@ ColorNamerColor2.addEventListener('input',()=>{
     var te = dataArr[FindNearestColor(dataArr,hexToRgb(ColorNamerColor2.value))][1];
     conColorNamer.innerHTML = ` 
       <div class="valCon">
-      <div class="status"> ${(ColorNamerColor2.value === te.hex)?"Exact match":"Relative match"} </div>
+      <div class="status"> ${(ColorNamerColor2.value === te.hex)?"Exact color":"Nearest color"} </div>
       <div class="basicCon"> <div class="colorBox" style="background-color:${te.hex};"></div> <input class="generatedColorName" readonly id="generatedColorName" value="${te.name}"></div>
       <div class="basicCon"> 
         <strong>hex:</strong> <input class="generatedhex" readonly id="generatedrgb" value="${te.hex}"> 
