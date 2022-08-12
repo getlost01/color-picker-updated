@@ -18,10 +18,11 @@ Visit this extension  <a href="https://chrome.google.com/webstore/detail/vibrant
 
 -----
 
-### ⚙️ Version v1.0.1.6 released
+### ⚙️ Version v1.0.1.7 released
 - In the playground section, a new color namer feature gets added.
 - Unwanted animation effect removed and UI updated.
 - (Optimized) Minor bugs fixed.
+
 
 -----
 
