@@ -18,10 +18,11 @@ Visit this extension  <a href="https://chrome.google.com/webstore/detail/vibrant
 
 -----
 
-### ⚙️ Version v1.0.1.6 released
-- When the eye dropper opens popup body goes hidden by this full-screen coverage for eye dropper can achieve.
-- Unwanted hover effect removed and UI updated.
-- Minor bugs fixation.
+### ⚙️ Version v1.0.1.7 released
+- In the playground section, a new color namer feature gets added.
+- Unwanted animation effect removed and UI updated.
+- (Optimized) Minor bugs fixed.
+
 
 -----
 
@@ -32,7 +33,7 @@ Visit this extension  <a href="https://chrome.google.com/webstore/detail/vibrant
 - Users can save up to 50 recent colors and copy color hex code by clicking it.
 - Eye dropper of this extension is powerful enough to extract color from all sites. It also works on new tab pages, chrome settings pages, and the chrome web store.
 - Click on the color boxes in a recent colors section to copy the hex value to the clipboard.
-- This extension also provides extra tools like a color grader, color mixer, and color code converter. 
+- This extension also provides extra tools like a color grader, color namer , color mixer, and color code converter. 
 - A user-friendly and simple interface, just click on the color box or clickable hex code to copy hex value.
 
 ### Support 
