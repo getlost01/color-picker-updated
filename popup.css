@@ -2,13 +2,13 @@
   --black-bg0: #080808;
   --black-bg1: #0f172a;
   --black-bg2: #1c242c;
-  --black-bg23: #28333e;
+  --black-bg23: #242424;
   --black-bg3: #303443;
-  --border-color: #555;
+  --border-color: #444;
   --border-color1: #777;
   --special-color1: #3c82f6;
   --special-color2: #0ca5e9;
-  --font-color1: #cbd5e1;
+  --font-color1: #d6dee6;
   --font-color2: #fff;
   --tran: all 0.2s ease;
   --tran1: all 0.05s ease;
@@ -18,7 +18,7 @@ body {
   color: var(--font-color1);
   width: 350px;
   height: 410px;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 .p-5{
   padding: 5px;
@@ -34,6 +34,8 @@ body {
   font-size: 1rem;
   font-weight: 600;
   user-select: none;
+  color: #efefef;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 .options{
   display: flex;
@@ -56,7 +58,7 @@ body {
   transform: scale(0.95);
 }
 .options .okActive{
-  color: var(--special-color2);
+  color: var(--special-color1);
 }
 
 
@@ -175,9 +177,10 @@ body {
   width: 25px;
   height: 25px;
   border-radius: 5px;
-  background: #000000;
+  background: #111111;
   border: 2px solid white;
   margin: 5px;
+  transition: var(--tran);
 }
 .mainCON .row .playground .row .col1 .colorvalue{
   font-size: 13px;
@@ -196,7 +199,7 @@ body {
   font-weight: 500;
 }
 .mainCON .row .playground .row .col1 input[type="text"], .diffInput{
-  width: 100px;
+  width: 90px;
   padding: 5px 10px;
   margin: 5px;
   border-radius: 3px;
@@ -207,7 +210,7 @@ body {
   letter-spacing: 1px;
 }
 .diffInput{
-  width: 170px;
+  width: 160px;
 }
 .mainCON .row .playground .row .col1 input[type="text"]::placeholder,.mainCON .row .playground .row .col1 input[type="number"]::placeholder,.diffInput::placeholder{
   color: #bbb;
@@ -282,7 +285,7 @@ margin: 0;
   padding: 0 10px;
 }
 .mainCON .row .playground .row .conColorNamer .valCon{
-  border: 0.5px solid var(--border-color);
+  border: 1px solid var(--border-color);
   background-color: var(--black-bg23);
   color: var(--font-color1);
   border-radius: 5px;
@@ -295,11 +298,10 @@ margin: 0;
   padding: 5px;
   padding-top: 0;
   font-weight: 600;
-  font-family: Arial, Helvetica, sans-serif;
   font-size: 12px;
   color: var(--special-color2);
   letter-spacing: 0.5px;
-  border-bottom: 0.5px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
   margin-bottom: 3px;
   user-select: none;
 }
@@ -314,7 +316,6 @@ margin: 0;
   background-color: #000000;
   margin: 0 5px;
   border-radius: 3px;
-  border: 1px solid var(--border-color);
 }
 .mainCON .row .playground .row .conColorNamer .valCon .generatedColorName{
   background-color: transparent;
@@ -351,12 +352,12 @@ margin: 0;
   margin: 0 2px;
   padding: 8px;
   border-radius: 50%;
-  box-shadow: 0 0 2px rgb(254, 254, 254);
+  box-shadow: 0 0 1px rgb(254, 254, 254);
   background-color: var(--black-bg0);
   color: var(--font-color2);
 }
 .social i:hover{
-  transform: scale(1.1);
+  box-shadow: 0 0 2px rgb(254, 254, 254);
 }
 
 
@@ -405,8 +406,8 @@ margin: 0;
 .mainCON .row .home .block .selectedColor .colorGrid{
   width: 30px;
   height: 30px;
-  border: 1px solid var(--font-color1);
-  background-color: #000000;
+  border: 1px solid #666;
+  background-color: #111111;
   border-radius: 5px;
   margin-right: 10px;
 }
@@ -414,10 +415,10 @@ margin: 0;
   cursor:copy;
   width: 70px;
   font-size: 15px;
+  transition: var(--tran);
 }
 .mainCON .row .home .block .selectedColor .colorValue:hover{
   color: var(--special-color2);
-  transform: scale(1.05);
 }
 .mainCON .row .home .block .selectedColor .save {
   position: relative;
@@ -467,12 +468,16 @@ margin: 0;
   width: 35px;
   height: 35px;
   border-radius: 5px;
-  border: 1px solid var(--border-color1);
+  border: 1px solid #343434;
   cursor: pointer;
   transition: var(--tran);
 }
+.mainCON .row .home .save-color .con .row .doHover{
+  border-color: transparent;
+}
 .mainCON .row .home .save-color .con .row .doHover:hover{
   transform: scale(1.25);
+  border-color: #ddd;
 }
 .mainCON .row .home .save-color .con .row .doHover:active{
   transform: scale(1.15);
@@ -512,9 +517,12 @@ margin: 0;
   width: 24px;
   height: 24px;
   border-radius: 5px;
-  border: 1px solid var(--border-color1);
+  border: 1px solid #555;
   cursor: pointer;
   transition: var(--tran);
+}
+.mainCON .row .recent50 .save-color .con .row .doHover{
+  border-color: transparent;
 }
 .mainCON .row .recent50 .save-color .con .row .doHover:hover{
   transform: scale(1.4);
