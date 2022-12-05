@@ -7,7 +7,7 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body>
+<body id="bodyCon">
   <!-- custom Cursor  -->
   <div>
     <div class="cursor rounded">
@@ -19,9 +19,32 @@
   
 <!-- social  -->
   <div class="social">
+    <a href="https://github.com/getlost01/color-picker-updated" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-code-fork"></i></a>
     <a href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&to=creator.gl01@gmail.com" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-envelope-open"></i></a>
  </div>
 
+ <!-- update portion -->
+ <div class="updatePart hidden">
+    <div class="center imgPlace">
+      <img src="/images/update.gif" alt="">
+    </div>
+    <h4>Updated Vibrant Color Dropper & Tools</h4>
+    <h6>Version : <span>1.0.1.8</span> released <span style="font-size:14px;">*</span></h6>
+    <ul>
+      <li>The major bug from the eye dropper has been removed.</li>
+      <li>Unwanted animation effect removed and UI enhancement.</li>
+      <li>[Optimized] Minor bug fixation.</li>
+    </ul>
+    <!-- <h6>Kudos</h6>
+    <p>We have just crossed 200 active users. We appreciate your support and request you to send your valuable feedback for more improvements.</p> -->
+    <h6>Contact us</h6>
+    <p>For all inquiries, please email <a href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&to=creator.gl01@gmail.com" target="_blank">here</a>.</p>
+    <div class="center p-5">
+      <button class="btn" id="removeUpdatePart">Back to Home</button>
+    </div>
+  </div>
+
+ <!-- main body here  -->
   <div class="title">
     <h2 id="headerName">Color Dropper</h2>
     <!-- <span id="result" ></span> -->
@@ -29,7 +52,7 @@
   <div class="options">
     <i class="fa-solid fa-circle-play" id="playBTN"></i>
     <i class="fa-solid fa-house-chimney okActive" id="homeBTN"></i>
-    <i class="fa-solid fa-sliders" id="recent50BTN"></i>
+    <i class="fa-solid fa-floppy-disk" id="recent50BTN"></i>
   </div>
   
   <div class="mainCON">
@@ -47,7 +70,7 @@
           
           <div class="row dropdown-box">
             <div class="col1">
-              Enter color :
+               <label class="p-5">Enter color :</label>
               <input type="text" placeholder="Hex Value" minlength="6" maxlength="7" id="HEXvalueColorGrader" value="000000">
               <h5>or</h5>
               <input type="color" value="#000000" id="colorValueColorGrader">
@@ -58,14 +81,44 @@
           </div>
         </div>
 
+        <div class="dropdown">
+          <input type="checkbox">
+          <div class="title">
+            <i class="fa-solid fa-chevron-down"></i>
+             Color Namer
+          </div>
+          
+          <div class="row dropdown-box">
+            <div class="col1">
+              <label class="p-5">Search name :</label>
+              <input type="text" placeholder="Hex Value" minlength="6" maxlength="7" id="ColorNamerColor1" value="000000">
+              <h5>or</h5>
+              <input type="color" value="#000000" id="ColorNamerColor2">
+            </div>
+            <div class="col1">
+              <label class="p-5">Search color :</label>
+              <input class="diffInput" placeholder="eg: black" id="ColorNamerName">
+            </div>
+            <div class="conColorNamer">
+                <div class="valCon">
+                  <div class="status"> Exact color </div>
+                  <div class="basicCon"> <div class="colorBox"></div> <input class="generatedColorName" readonly id="generatedColorName" value="Black"></div>
+                  <div class="basicCon"> 
+                    <strong>hex:</strong> <input class="generatedhex" readonly id="generatedrgb" value="#000000"> 
+                    <strong>rgb:</strong> <input class="generatedrgb" readonly id="generatedrgb" value="rgb(0, 0, 0)"> 
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
 
         <div class="dropdown">
-            <input type="checkbox">
+          <input type="checkbox">
             <div class="title">
                 <i class="fa-solid fa-chevron-down"></i>
                  Color Mixer
             </div>
-            
+
             <div class="row dropdown-box">
                   <div class="col1">
                         <p>Color1:</p>
@@ -111,6 +164,11 @@
                 <p class="res"><span id="hexRESULT">#000000</span> <i class="fa-solid fa-arrow-right-arrow-left"></i> <span id="RGBresult">rgb(0, 0, 0)</span> </p>
           </div>
           </div>
+
+
+      <div class="alertForUpdate"> <p>For all inquiries, please email <a href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&to=creator.gl01@gmail.com" target="_blank">here</a> </p>
+                         <p>Version <span id="showLog">1.0.1.8</span></p>
+      </div>
 
       </div>
 
@@ -223,7 +281,6 @@
 
     </div>
   </div>
-  
   
  <div class="toastCon"> <div class="toast"></div></div>
  

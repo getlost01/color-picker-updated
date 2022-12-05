@@ -8,6 +8,9 @@ const toast=document.querySelector(".toast");
 const playground=document.querySelector(".playground");
 const home=document.querySelector(".home");
 const recent50=document.querySelector(".recent50");
+const body=document.querySelector("#bodyCon");
+const playCheckbox = document.querySelectorAll('input[type="checkbox"]');
+const playDropdown = document.querySelectorAll('.dropdown');
 
 let ids=[];
 let colorArr=[];
@@ -18,6 +21,23 @@ if(colorfromls)
     render();
 }
 
+// UPDATE PAGE SECTION
+if(localStorage.getItem("updatePage") != "1.0.1.8"){
+    localStorage.setItem("updatePage","1.0.1.8");
+    document.querySelector(".updatePart").classList.remove("hidden");
+    document.getElementsByTagName("BODY")[0].style.backgroundColor = "#edeff5";
+}
+document.querySelector('#removeUpdatePart').addEventListener('click',()=>{
+  localStorage.setItem("updatePage","okDone");
+  document.getElementsByTagName("BODY")[0].style.backgroundColor = "#0f172a";
+  document.querySelector(".updatePart").classList.add("hidden");
+})
+document.querySelector("#showLog").addEventListener('click',()=>{
+  document.querySelector(".updatePart").classList.remove("hidden");
+  document.getElementsByTagName("BODY")[0].style.backgroundColor = "#edeff5";
+})
+
+// Main function Render
 function render(){
   let tempid=[];
   let c=1;
@@ -28,12 +48,14 @@ function render(){
      let is=""+c;
      let te=document.getElementById(is)
      te.style.backgroundColor=colorArr[i];
+     te.classList.add('doHover');
     }
     if(c<51)
     {
      let is="r"+c;
      let te=document.getElementById(is)
      te.style.backgroundColor=colorArr[i];
+     te.classList.add('doHover');
      c++;
     }
     else{
@@ -98,14 +120,16 @@ colorValue.addEventListener('click', () => {
   })
 
 
-  select.addEventListener('change', (event) => {
+select.addEventListener('change', (event) => {
     if(event.target.value==='Eye')
     {
       const eyeDropper = new EyeDropper();
       const abortController = new AbortController();
-    
+
+      body.style.display = 'none';
       eyeDropper.open({ signal: abortController.signal }).then(result => {
-        var temp = result.sRGBHex;
+        let temp = result.sRGBHex;
+        // console.log(result);
         if(temp[0]==='#')
         {colorValue.textContent = temp;
         colorGrid.style.backgroundColor = temp;}
@@ -113,11 +137,11 @@ colorValue.addEventListener('click', () => {
           temp = temp.toLowerCase();
           if(temp[0]==='r' && temp[1]==='g' && temp[2]==='b')
           {
-             var b1 = temp.indexOf('(');
-             var b2 = temp.indexOf(')');
-             temp = temp.substring(b1,b2+1);
-             var rgbVal = temp.split(",");
-             var HexVal = rgbToHex(parseInt(rgbVal[0]),parseInt(rgbVal[1]),parseInt(rgbVal[2]));
+             let b1 = temp.indexOf('(');
+             let b2 = temp.indexOf(')');
+             temp = temp.substring(b1+1,b2);
+             let rgbVal = temp.split(",");
+             let HexVal = rgbToHex(parseInt(rgbVal[0]),parseInt(rgbVal[1]),parseInt(rgbVal[2]));
              colorValue.textContent = HexVal;
              colorGrid.style.backgroundColor = HexVal;
           }
@@ -125,6 +149,7 @@ colorValue.addEventListener('click', () => {
             show_toast("Error Occur, Contact Developer");
           }
         }
+        body.style.display = "block";
       }).catch((e) => {
         show_toast(e);
       });
@@ -181,16 +206,16 @@ document.querySelector('#recent50BTN').addEventListener('click',()=>{
 
 // playground Color Mixer --------->
 
-var slider1 = document.getElementById("colorIN1");
-var sliderVal1 = document.getElementById("colorVal1");
-var slider2 = document.getElementById("colorIN2");
-var sliderVal2 = document.getElementById("colorVal2");
-var userColor1 = document.getElementById("userColor1");
-var userColor2 = document.getElementById("userColor2");
-var resultColor = document.getElementById("resultColor");
-var resultColorValue = document.getElementById("resultColorValue");
-var workCol1='#000000',workCol2='#000000';
-var intensity1=50, intensity2=50;
+const slider1 = document.getElementById("colorIN1");
+const sliderVal1 = document.getElementById("colorVal1");
+const slider2 = document.getElementById("colorIN2");
+const sliderVal2 = document.getElementById("colorVal2");
+const userColor1 = document.getElementById("userColor1");
+const userColor2 = document.getElementById("userColor2");
+const resultColor = document.getElementById("resultColor");
+const resultColorValue = document.getElementById("resultColorValue");
+let workCol1='#000000',workCol2='#000000';
+let intensity1=50, intensity2=50;
 
 slider1.oninput = function() {
   intensity1 = this.value;
@@ -224,11 +249,11 @@ resultColorValue.addEventListener('click',()=>{
 
 
 function getColor(){
-   var temp1 = hexToRgb(workCol1);
-   var temp2 = hexToRgb(workCol2);
-   var r = parseInt((temp1.r*intensity1 + temp2.r*intensity2)/100);
-   var g = parseInt((temp1.g*intensity1 + temp2.g*intensity2)/100);
-   var b = parseInt((temp1.b*intensity1 + temp2.b*intensity2)/100);
+   let temp1 = hexToRgb(workCol1);
+   let temp2 = hexToRgb(workCol2);
+   let r = parseInt((temp1.r*intensity1 + temp2.r*intensity2)/100);
+   let g = parseInt((temp1.g*intensity1 + temp2.g*intensity2)/100);
+   let b = parseInt((temp1.b*intensity1 + temp2.b*intensity2)/100);
    resultColor.style.backgroundColor = rgbToHex(r,g,b);
    resultColorValue.innerHTML = rgbToHex(r,g,b);
   //  console.log(rgbToHex(r,g,b));
@@ -238,20 +263,20 @@ function getColor(){
 
 // convertors ==========>
 function HexToHSL(hex) {
-    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
 
-    var r = parseInt(result[1], 16);
-    var g = parseInt(result[2], 16);
-    var b = parseInt(result[3], 16);
+    let r = parseInt(result[1], 16);
+    let g = parseInt(result[2], 16);
+    let b = parseInt(result[3], 16);
 
     r /= 255, g /= 255, b /= 255;
-    var max = Math.max(r, g, b), min = Math.min(r, g, b);
-    var h, s, l = (max + min) / 2;
+    let max = Math.max(r, g, b), min = Math.min(r, g, b);
+    let h, s, l = (max + min) / 2;
 
     if(max == min){
         h = s = 0; 
     } else {
-        var d = max - min;
+        let d = max - min;
         s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
         switch(max) {
             case r: h = (g - b) / d + (g < b ? 6 : 0); break;
@@ -302,7 +327,7 @@ function hslToHex(h, s, l) {
 
 
 function hexToRgb(hex) {
-  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   return result ? {
     r: parseInt(result[1], 16),
     g: parseInt(result[2], 16),
@@ -314,19 +339,36 @@ function rgbToHex(r, g, b) {
   return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
 }
 
+// playground dropdown --------->
+playCheckbox.forEach((ele,i) => {
+   ele.addEventListener('click',()=>{
+      if(ele.checked)
+      {
+        playDropdown.forEach(e =>{
+          e.classList.add('hidden');
+        })
+        playDropdown[i].classList.remove('hidden')
+      }
+      else{
+        playDropdown.forEach(e =>{
+          e.classList.remove('hidden');
+        })
+      }
+   })
+});
 
 // Color  converter --------->
 
-var HEXvalue = document.getElementById("HEXvalue");
-var Rvalue = document.getElementById("Rvalue");
-var Gvalue = document.getElementById("Gvalue");
-var Bvalue = document.getElementById("Bvalue");
-var hexRESULT = document.getElementById("hexRESULT");
-var RGBresult = document.getElementById("RGBresult");
+let HEXvalue = document.getElementById("HEXvalue");
+let Rvalue = document.getElementById("Rvalue");
+let Gvalue = document.getElementById("Gvalue");
+let Bvalue = document.getElementById("Bvalue");
+let hexRESULT = document.getElementById("hexRESULT");
+let RGBresult = document.getElementById("RGBresult");
 
 HEXvalue.addEventListener('input',()=>{
-    var temp = HEXvalue.value.toLowerCase();
-    var newTemp = "";
+    let temp = HEXvalue.value.toLowerCase();
+    let newTemp = "";
     for(let i=0;i<temp.length;i++)
     {
       if((temp[i]<='9'&&temp[i]>='0') || (temp[i]<='f'&&temp[i]>='a'))
@@ -335,20 +377,20 @@ HEXvalue.addEventListener('input',()=>{
     HEXvalue.value = newTemp;
     newTemp = "#"+newTemp;
     hexRESULT.innerHTML = newTemp;
-    var t = hexToRgb(newTemp);
+    let t = hexToRgb(newTemp);
     // console.log(t);
     if(t!=null)
     {RGBresult.innerHTML = `rgb(${t.r}, ${t.g}, ${t.b})`;}
 })
 Rvalue.addEventListener('input',()=>{
-  var temp = parseInt(Rvalue.value);
+  let temp = parseInt(Rvalue.value);
   if(temp>255)
   Rvalue.value = 255;
   RGBresult.innerHTML = `rgb(${Rvalue.value}, ${Gvalue.value}, ${Bvalue.value})`;
   hexRESULT.innerHTML = rgbToHex(parseInt(Rvalue.value),parseInt(Gvalue.value),parseInt(Bvalue.value));
 })
 Gvalue.addEventListener('input',()=>{
-  var temp = parseInt(Gvalue.value);
+  let temp = parseInt(Gvalue.value);
   if(temp>255)
   Gvalue.value = 255;
   RGBresult.innerHTML = `rgb(${Rvalue.value}, ${Gvalue.value}, ${Bvalue.value})`;
@@ -356,7 +398,7 @@ Gvalue.addEventListener('input',()=>{
 })
 
 Bvalue.addEventListener('input',()=>{
-  var temp = parseInt(Bvalue.value);
+  let temp = parseInt(Bvalue.value);
   if(temp>255)
   Bvalue.value = 255;
   RGBresult.innerHTML = `rgb(${Rvalue.value}, ${Gvalue.value}, ${Bvalue.value})`;
@@ -383,8 +425,8 @@ const colorGrader2 = document.querySelector('#colorValueColorGrader');
 const con = document.querySelector('.colorGrader');
 
 colorGrader1.addEventListener('input',()=>{
-    var temp = colorGrader1.value.toLowerCase();
-    var newTemp = "";
+    let temp = colorGrader1.value.toLowerCase();
+    let newTemp = "";
     for(let i=0;i<temp.length;i++)
     {
       if((temp[i]<='9'&&temp[i]>='0') || (temp[i]<='f'&&temp[i]>='a'))
@@ -392,7 +434,7 @@ colorGrader1.addEventListener('input',()=>{
     }
     colorGrader1.value = newTemp;
     newTemp = "#"+newTemp;
-    var t = hexToRgb(newTemp);
+    let t = hexToRgb(newTemp);
     // console.log(t);
     if(t!=null)
     {colorGrader2.value = newTemp; colorGrader2.dispatchEvent(new Event('input'));}
@@ -401,20 +443,20 @@ colorGrader2.addEventListener('input',()=>{
     // console.log("change Occur");
     let inputColor = colorGrader2.value;
     let ourColor = HexToHSL(inputColor);
-    var temp = {};
+    let temp = {};
     temp[ourColor.l] = hslToHex(ourColor.h,ourColor.s,ourColor.l);
-    for(var i = 100 ;i >= 0 ; i -= 4)
+    for(let i = 100 ;i >= 0 ; i -= 4)
     {
         temp[i] = hslToHex(ourColor.h,ourColor.s,i);
     }
     con.innerHTML = ``;
     for (const [key, value] of Object.entries(temp)) {
-        var fontColor;
+        let fontColor;
         if(key<=50)
         fontColor = "white";
         else
         fontColor = "black";
-        var colorHigh = ((key == ourColor.l)?"ColorHigh":"");
+        let colorHigh = ((key == ourColor.l)?"ColorHigh":"");
         con.innerHTML = `
             <div class="colorBox  ${colorHigh}" id="cID${key}" style="color: ${fontColor}; background-color: ${value};">
                  <span class="keySpan" id="keySpanid${key}"></span>
@@ -444,9 +486,138 @@ colorGrader2.addEventListener('input',()=>{
     }
 })
 
+// Color Namer -------->
 
+let ColorNamerColor1 = document.querySelector("#ColorNamerColor1");
+let ColorNamerColor2 = document.querySelector("#ColorNamerColor2");
+let ColorNamerName = document.querySelector("#ColorNamerName");
+const conColorNamer =document.querySelector(".conColorNamer");
+let dataArr;
 
+fetch("/color.json")
+.then(res => res.json())
+.then(data => {dataArr = data;})
 
+ColorNamerColor1.addEventListener('input',()=>{
+  let temp = ColorNamerColor1.value.toLowerCase();
+  let newTemp = "";
+  for(let i=0;i<temp.length;i++)
+  {
+    if((temp[i]<='9'&&temp[i]>='0') || (temp[i]<='f'&&temp[i]>='a'))
+    newTemp+= temp[i]
+  }
+  ColorNamerColor1.value = newTemp;
+  if(newTemp.length>5)
+  {ColorNamerColor2.value = "#"+newTemp.substring(0,6); ColorNamerColor2.dispatchEvent(new Event('input'));}
+})
 
+ColorNamerColor2.addEventListener('input',()=>{
+    ColorNamerColor1.value = ColorNamerColor2.value.substring(1,7);
+    let te = dataArr[FindNearestColor(dataArr,hexToRgb(ColorNamerColor2.value))][1];
+    conColorNamer.innerHTML = ` 
+      <div class="valCon">
+      <div class="status"> ${(ColorNamerColor2.value === te.hex)?"Exact color":"Nearest color"} </div>
+      <div class="basicCon"> <div class="colorBox" style="background-color:${te.hex};"></div> <input class="generatedColorName" readonly id="generatedColorName" value="${te.name}"></div>
+      <div class="basicCon"> 
+        <strong>hex:</strong> <input class="generatedhex" readonly id="generatedrgb" value="${te.hex}"> 
+        <strong>rgb:</strong> <input class="generatedrgb" readonly id="generatedrgb" value="rgb(${te.rgb.r},${te.rgb.g},${te.rgb.b})"> 
+      </div>
+    </div>
+    `;
+})
 
+ColorNamerName.addEventListener('input',()=>{
+    let check = ColorNamerName.value.toUpperCase();
+    let checkLen = check.length;
+    if(checkLen<3 && check!="AO"){return;}
+    let len = dataArr.length,valid;
+    let exactArr = [];
+    let nonexactArr = [];
+    let ert = '',c=0;
+
+    conColorNamer.innerHTML = "";
+    for(let i = 0;i<len;++i){
+        valid = dataArr[i][1].name.toUpperCase().indexOf(check);
+        if (valid > -1) {
+           if(valid)
+           nonexactArr.push([i,valid]);
+           else
+           exactArr.push([i,(dataArr[i][1].name.length - checkLen)]);
+        }
+    }
+    exactArr.sort((a, b) => a[1] - b[1]);
+    nonexactArr.sort((a, b) => a[1] - b[1]);
+    for(let i=0;i<exactArr.length;++i){
+      if(c<200){
+        ert += `
+        <div class="valCon">
+          <div class="basicCon"> <div class="colorBox" style="background-color:${dataArr[exactArr[i][0]][1].hex};"></div> <input class="generatedColorName" readonly id="generatedColorName" value="${dataArr[exactArr[i][0]][1].name} "></div>
+          <div class="basicCon"> 
+            <strong>hex:</strong> <input class="generatedhex" readonly id="generatedrgb" value="${dataArr[exactArr[i][0]][1].hex}"> 
+            <strong>rgb:</strong> <input class="generatedrgb" readonly id="generatedrgb" value="rgb(${dataArr[exactArr[i][0]][1].rgb.r},${dataArr[exactArr[i][0]][1].rgb.g},${dataArr[exactArr[i][0]][1].rgb.b})"> 
+          </div>
+        </div>`;
+        ++c;
+      }
+      else break;
+    }
+    for(let i=0;i<nonexactArr.length;++i){
+      if(c<200){
+        ert += `
+        <div class="valCon">
+          <div class="basicCon"> <div class="colorBox" style="background-color:${dataArr[nonexactArr[i][0]][1].hex};"></div> <input class="generatedColorName" readonly id="generatedColorName" value="${dataArr[nonexactArr[i][0]][1].name} "></div>
+          <div class="basicCon"> 
+            <strong>hex:</strong> <input class="generatedhex" readonly id="generatedrgb" value="${dataArr[nonexactArr[i][0]][1].hex}"> 
+            <strong>rgb:</strong> <input class="generatedrgb" readonly id="generatedrgb" value="rgb(${dataArr[nonexactArr[i][0]][1].rgb.r},${dataArr[nonexactArr[i][0]][1].rgb.g},${dataArr[nonexactArr[i][0]][1].rgb.b})"> 
+          </div>
+        </div>`;
+        ++c;
+      }
+      else break;
+    }
+    if(ert === ``){
+        ert = `
+        <div class="valCon">
+          <div class="basicCon"> <div class="colorBox" style="background-color: #dd4e41;"></div> <input class="generatedColorName" readonly id="generatedColorName" value="!! Color name not found !! " style="color:  #dd4e41;"></div>
+          <div class="basicCon"> 
+            <strong>hex:</strong> <input class="generatedhex" readonly id="generatedrgb" value="#......"> 
+            <strong>rgb:</strong> <input class="generatedrgb" readonly id="generatedrgb" value="rgb(... , ... , ...)"> 
+          </div>
+      </div>`;
+    }
+    conColorNamer.innerHTML = ert;
+})
+
+function GetDistance(current, match)
+{
+  let redDifference;
+  let greenDifference;
+  let blueDifference;
+
+  redDifference = current.r - match.r;
+  greenDifference = current.g - match.g;
+  blueDifference = current.b - match.b;
+
+  return redDifference * redDifference + greenDifference * greenDifference + blueDifference * blueDifference;
+}
+
+function FindNearestColor(map,current)
+{
+  let shortestDistance;
+  let index;
+
+  index = -1;
+  shortestDistance = Number.MAX_VALUE;
+  let len = dataArr.length;
+  for (let i = 0; i < len; i++)
+  {
+    let distance = GetDistance(current, map[i][1].rgb);
+    if (distance < shortestDistance)
+    {
+      index = i;
+      shortestDistance = distance;
+    }
+  }
+  return index;
+}
 

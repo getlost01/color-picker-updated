@@ -1,27 +1,68 @@
-# Color-Dropper
-:tada: First of all, thanks for visit our extension
-[Color Dropper](https://chrome.google.com/webstore/detail/vibrant-color-dropper/fcekakhpgmlaihglgajajbceajnhlgfn?hl=en&authuser=0)! :tada:<br>
+<p align="center">
+  <a href="https://chrome.google.com/webstore/detail/vibrant-color-dropper-pic/fcekakhpgmlaihglgajajbceajnhlgfn?hl=en&authuser=0">
+    <img src="https://github.com/getlost01/color-picker-updated/blob/56b980e35fde2caec13a8167551b34473f847449/images/clogo.png" height="96">
+    <h3 align="center">Vibrant Color Dropper & Picker</h3>
+  </a>
+</p>
 
-> A Powerful Color Dropper Tool to extract Colors from a browser tab, and also save recent used colors.
-  
-  
-## Features:<br>
-➡️ This extension can extract colours from current tabs.<br>
-➡️ This extension have two main features i) Eye Dropper ii) Colour Selector.<br>
-➡️ Eye dropper to select any colour from browser tab and Colour Selector for make possible combinations of RGB and form a required colour.<br>
-➡️ Recent section that can saves all recently colours(Upto 10).<br>
-➡️ Eye dropper of this extension is powerful enough to extract colour from all sites. Especially sites like work on new tab page,<br>
-Chrome settings pages, and the Chrome Web Store.<br>
-➡️ Click on hex value in tool section and colour boxes of recent section to copy the hex value on the clipboard.<br>
-➡️ A user friendly and simple interface.<br>
 
-## Preview
-<img width="400" alt="Screenshot 2022-06-05 at 1 47 31 PM" src=https://github.com/getlost01/temp/blob/main/GIF-220624_200620.gif>
+----
+> A color picker tool that extracts every pixel from the current screen and also saves recently used colors.
+</br>
+Visit this extension  <a href="https://chrome.google.com/webstore/detail/vibrant-color-dropper-pic/fcekakhpgmlaihglgajajbceajnhlgfn?hl=en&authuser=0">here</a>
 
-## Shortcut Key:<br>
-☑️ For window , linux Press "Ctrl+Shift+9". <br>
-☑️  For mac press "Command+Shift+9". to activate the colour picker. <br>
-🔘 Press «Esc» to cancel the tool on the page.<br>
+----
 
->Add our Vibrant Color Dropper and also write reviews so that we can understand that we really get motivation to make more useful extensions.
-Also provide feedback, which help us to fix any shortcomings and make our extension even more convenient for all 😃.
+### :wrench: Tools Used
+- Javascript / CSS / HTML / Chrome web APIs / Local storage
+
+-----
+
+### ⚙️ Version v1.0.1.8 released
+- In the playground section, a new color namer feature gets added.
+- Unwanted animation effect removed and UI updated.
+- (Optimized) Minor bugs fixed.
+
+-----
+
+### Features:<br>
+- This extension extracts colors from the current screen.
+- This extension has two main features i) Eye Dropper and ii) Color Selector.
+- Eye dropper to select any color from the current window and Color Selector to make possible combinations of RGB and form a required color.
+- Users can save up to 50 recent colors and copy color hex code by clicking it.
+- Eye dropper of this extension is powerful enough to extract color from all sites. It also works on new tab pages, chrome settings pages, and the chrome web store.
+- Click on the color boxes in a recent colors section to copy the hex value to the clipboard.
+- This extension also provides extra tools like a color grader, color namer , color mixer, and color code converter. 
+- A user-friendly and simple interface, just click on the color box or clickable hex code to copy hex value.
+
+### Support 
+This extension has only been supported on Chrome / Edge-based web browsers.
+
+### Preview
+<img width="500" alt="" src=https://github.com/getlost01/temp/blob/0a38407bae08ec5bac9aa78329d514d8f5558c3b/colorpicker/home.png>
+<img width="500" alt="" src=https://github.com/getlost01/temp/blob/0a38407bae08ec5bac9aa78329d514d8f5558c3b/colorpicker/playground.png>
+<img width="500" alt="" src=https://github.com/getlost01/temp/blob/0a38407bae08ec5bac9aa78329d514d8f5558c3b/colorpicker/save%2050.png>
+<img width="500" alt="" src=https://github.com/getlost01/temp/blob/0a38407bae08ec5bac9aa78329d514d8f5558c3b/colorpicker/color%20grader.png>
+
+
+-----
+
+### :v: Contributing
+
+#### Step 1: Clone The Repo
+
+Fork the repository and then clone the repo locally by -
+```bash
+git clone https://github.com/getlost01/color-picker-updated.git
+```
+#### Step 2: Install Dependencies
+Visit brave://extensions , in developement mode test your updates.<br>
+
+Great!, after cloning & setting up the local project and making updates then you can push the changes to your GitHub fork and make a pull request.
+
+-----
+
+<p align="center">
+Give the extension a :star: if you liked it.<br>
+Made with :heart: and javascript.
+</p>
