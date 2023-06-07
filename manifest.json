@@ -1,7 +1,7 @@
 {
   "name": "Vibrant Color Dropper & Tools",
   "description": "A color-playing tool that extracts every pixel from the current screen and also saves recently used colors.",
-  "version": "1.0.1.8",
+  "version": "1.0.1.9",
   "manifest_version": 3,
   "background": {
       "service_worker": "background.js"
