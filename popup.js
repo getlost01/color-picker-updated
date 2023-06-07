@@ -22,13 +22,12 @@ if(colorfromls)
 }
 
 // UPDATE PAGE SECTION
-if(localStorage.getItem("updatePage") != "1.0.1.8"){
-    localStorage.setItem("updatePage","1.0.1.8");
+if(localStorage.getItem("updatePage") != "1.0.1.9"){
+    localStorage.setItem("updatePage","1.0.1.9");
     document.querySelector(".updatePart").classList.remove("hidden");
     document.getElementsByTagName("BODY")[0].style.backgroundColor = "#edeff5";
 }
 document.querySelector('#removeUpdatePart').addEventListener('click',()=>{
-  localStorage.setItem("updatePage","okDone");
   document.getElementsByTagName("BODY")[0].style.backgroundColor = "#0f172a";
   document.querySelector(".updatePart").classList.add("hidden");
 })

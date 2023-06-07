@@ -526,6 +526,7 @@ margin: 0;
 }
 .mainCON .row .recent50 .save-color .con .row .doHover:hover{
   transform: scale(1.4);
+  border: 1px solid #ececec;
 }
 .mainCON .row .recent50 .save-color .con .row .doHover:active{
   transform: scale(1.3);
